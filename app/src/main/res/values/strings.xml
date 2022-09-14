@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CropToCashAssessment</string>
+    <string name="my_info">MY INFO</string>
+    <string name="unloadedview"></string>
 </resources>
