@@ -27,21 +27,22 @@ fun ExpandedView(context: Context, exhibit: Exhibit, currentIndex : Int){
 
     var currentPosition = currentIndex
 
-    var title = load.findViewById<TextView>(R.id.item_title)
-    var image = load.findViewById<ImageView>(R.id.item_image)
-    var previous = load.findViewById<CardView>(R.id.previous_image)
-    var next = load.findViewById<CardView>(R.id.next_image)
-    var cancel = load.findViewById<ImageView>(R.id.cancel_expansion)
+    val title = load.findViewById<TextView>(R.id.item_title)
+    val image = load.findViewById<ImageView>(R.id.item_image)
+    val previous = load.findViewById<CardView>(R.id.previous_image)
+    val next = load.findViewById<CardView>(R.id.next_image)
+    val cancel = load.findViewById<ImageView>(R.id.cancel_expansion)
+
+    val imagesUrl = exhibit.images
 
     title.text = exhibit.title
-    var imagesUrl = exhibit.images
+
     Glide.with(context).load(imagesUrl[currentPosition])
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                     image.setImageResource(R.drawable.noimage)
                     return true
                 }
-
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                     return false
                 }

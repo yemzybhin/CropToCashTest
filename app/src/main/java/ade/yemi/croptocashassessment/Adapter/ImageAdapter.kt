@@ -61,7 +61,7 @@ class ImageAdapter(var context: Context, var exhibit : Exhibit) :
         return  exhibit.images.size
     }
     inner class ItemHolder(itemView : View): RecyclerView.ViewHolder(itemView){
-        var title = itemView.findViewById<TextView>(R.id.Exhibit_name)
-        var image = itemView.findViewById<ImageView>(R.id.exhibit_image)
+        val title = itemView.findViewById<TextView>(R.id.Exhibit_name)
+        val image = itemView.findViewById<ImageView>(R.id.exhibit_image)
     }
 }

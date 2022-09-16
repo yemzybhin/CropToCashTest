@@ -35,14 +35,14 @@ class RestExhibitsLoader {
     fun callAllData(context: Context, linearLayout: LinearLayout, firsttimepropt : TextView, recyclerView: RecyclerView){
         manager = LinearLayoutManager(context)
 
-        var exhibitLoaderInstance = ExhibitsLoader.getExhibitList()
-        var call = exhibitLoaderInstance
+        val exhibitLoaderInstance = ExhibitsLoader.getExhibitList()
+        val call = exhibitLoaderInstance
 
         call?.enqueue(object : Callback<List<Exhibit?>?> {
             override fun onResponse(call: Call<List<Exhibit?>?>, response: Response<List<Exhibit?>?>) {
 
-               // Toast.makeText(context, "success", Toast.LENGTH_SHORT).show()
-                var exhibits: List<Exhibit>? = response.body() as List<Exhibit>
+                // Toast.makeText(context, "success", Toast.LENGTH_SHORT).show()
+                val exhibits: List<Exhibit>? = response.body() as List<Exhibit>
                 linearLayout.visibility = View.GONE
                 recyclerView.apply {
                     myAdapter = ExhibitAdapter(exhibits!!)
@@ -51,38 +51,39 @@ class RestExhibitsLoader {
                 }
 
                 runCatching {
-                    var jsonExhibit = ExhibitsToJson(exhibits!!)
+                    val jsonExhibit = ExhibitsToJson(exhibits!!)
                     SavedInfo(context).setSavedInfo(jsonExhibit)
                 }.onSuccess {
-                    var notificationText = "Online Exhibit. Data successfully\nsaved For offline view. Put off\nInternet and reload to Confirm"
+                    val notificationText = "Online Exhibit. Data successfully\nsaved For offline view. Put off\nInternet and reload to Confirm"
                     offlineLoadNotification(context, notificationText)
                 }.onFailure {
-                    var notificationText = "Data could not be saved\nFor offline view"
+                    val notificationText = "Data could not be saved\nFor offline view"
                     offlineLoadNotification(context, notificationText)
                 }
 
                 android.os.Handler().postDelayed({
-                    var animation = AnimationUtils.loadAnimation(context, R.anim.slide_in)
-                    var firstTimeValue = SavedInfo(context).getFirstTime()
-                    if (firstTimeValue == false){
+                    val animation = AnimationUtils.loadAnimation(context, R.anim.slide_in)
+                    val firstTimeValue = SavedInfo(context).getFirstTime()
+                    if (firstTimeValue == false) {
                         firsttimepropt.visibility = View.VISIBLE
                         firsttimepropt.startAnimation(animation)
                         SavedInfo(context).setFirstTime(true)
                         android.os.Handler().postDelayed({
-                            firsttimepropt.clicking()
                             firsttimepropt.visibility = View.GONE
-                        },5000)
+                        }, 7000)
                     }
-                },8000)
+                }, 8000)
 
 
             }
 
             override fun onFailure(call: Call<List<Exhibit?>?>, t: Throwable) {
+              //  Toast.makeText(context, "${t.message}", Toast.LENGTH_SHORT).show()
+
                 linearLayout.visibility = View.GONE
-                var jsonExhibit = SavedInfo(context).getSavedInfo()
+                val jsonExhibit = SavedInfo(context).getSavedInfo()
                 if (jsonExhibit != "") {
-                    var offlineExhibits = GenerateOfflineExhibits(context, jsonExhibit!!)
+                    val offlineExhibits = GenerateOfflineExhibits(context, jsonExhibit!!)
 
                     recyclerView.apply {
                         myAdapter = ExhibitAdapter(offlineExhibits!!)
@@ -94,10 +95,9 @@ class RestExhibitsLoader {
                     offlineLoadNotification(context, notificationText)
 
                 } else {
-                    var notificationText = "Check your internet\nconnection and reload."
+                    val notificationText = "Check your internet\nconnection and reload."
                     offlineLoadNotification(context, notificationText)
                 }
-
             }
         })
     }
@@ -109,9 +109,10 @@ class RestExhibitsLoader {
         load.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         load.show()
 
-        var animation = AnimationUtils.loadAnimation(context, R.anim.slide_in2)
-        var notificationText = load.findViewById<TextView>(R.id.tv_notificationtextid)
-        var cancel = load.findViewById<ImageView>(R.id.notification_cancel)
+        val animation = AnimationUtils.loadAnimation(context, R.anim.slide_in2)
+        val notificationText = load.findViewById<TextView>(R.id.tv_notificationtextid)
+        val cancel = load.findViewById<ImageView>(R.id.notification_cancel)
+
         notificationText.startAnimation(animation)
         notificationText.text = notifyText
         android.os.Handler().postDelayed({
@@ -122,8 +123,5 @@ class RestExhibitsLoader {
             cancel.clicking()
             load.dismiss()
         }
-
     }
-
-
 }

@@ -10,6 +10,8 @@ class SavedInfo {
         this.context = context
         this.sharef = context.getSharedPreferences("PreferenceStuff", Context.MODE_PRIVATE)
     }
+
+    //Shared preference for the exhibits saved offline after the object has been converted to a JSON string
     fun setSavedInfo(savedInfo: String){
         var editor = sharef!!.edit()
         editor.putString("SavedInfo", savedInfo)
@@ -19,6 +21,7 @@ class SavedInfo {
         return sharef!!.getString("SavedInfo", "")
     }
 
+    //First time opening the app. A prompt to let user know that each image is clickable for a broader view
     fun setFirstTime(firsttime: Boolean){
         var editor = sharef!!.edit()
         editor.putBoolean("FirstTime", firsttime)

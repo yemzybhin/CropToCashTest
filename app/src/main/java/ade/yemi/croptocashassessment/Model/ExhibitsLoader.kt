@@ -21,8 +21,5 @@ interface  ExhibitsLoader{
             var listItems =API.allExhibits
             return listItems
         }
-
     }
-
-
 }
