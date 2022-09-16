@@ -108,8 +108,4 @@ fun ExpandedView(context: Context, exhibit: Exhibit, currentIndex : Int){
         cancel.clicking()
         load.dismiss()
     }
-
-
-
-
 }

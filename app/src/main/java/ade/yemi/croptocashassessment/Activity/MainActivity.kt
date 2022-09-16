@@ -16,8 +16,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,6 +47,11 @@ class MainActivity : AppCompatActivity() {
         myInfoLayout.visibility = View.GONE
         firstTimePrompt.visibility = View.GONE
 
+//      var restExhibitsLoader = RestExhibitsLoader()
+//      lifecycleScope.launch(Dispatchers.Main) {
+//          restExhibitsLoader.callAllData(this, unloadedDataView, firstTimePrompt ,recyclerView)
+//      }
+
         var restExhibitsLoader = RestExhibitsLoader()
         restExhibitsLoader.callAllData(this, unloadedDataView, firstTimePrompt ,recyclerView)
 
@@ -62,7 +70,6 @@ class MainActivity : AppCompatActivity() {
                 myInfoLayout.visibility = View.GONE
                 myInfoOpened = false
             }
-
         }
 
         cancelMyInfo.setOnClickListener {
