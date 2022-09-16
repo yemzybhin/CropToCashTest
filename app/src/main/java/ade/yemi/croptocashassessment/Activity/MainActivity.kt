@@ -4,6 +4,7 @@ import ade.yemi.croptocashassessment.R
 import ade.yemi.croptocashassessment.RestExhibitsLoader.RestExhibitsLoader
 import ade.yemi.croptocashassessment.Utilities.SocialObject
 import ade.yemi.croptocashassessment.Utilities.clicking
+import ade.yemi.croptocashassessment.Utilities.vibrate
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -88,9 +89,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         for (i in socials){
-            i.socialIcon.clicking()
             i.socialIcon.startAnimation(animation)
             i.socialIcon.setOnClickListener {
+                i.socialIcon.vibrate()
                 runCatching {
                     val uriUri = Uri.parse(i.socialLink)
                     val launchBrowser = Intent(Intent.ACTION_VIEW, uriUri)

@@ -107,7 +107,7 @@
                     android:paddingLeft="15dp"
                     android:paddingBottom="15dp"
                     android:paddingRight="15dp"
-                    android:lineSpacingExtra="10dp"
+                    android:lineSpacingExtra="7dp"
                     android:fontFamily="@font/productsansbold"
                     android:textSize="14sp"
                     android:background="@drawable/loadingbackground"
