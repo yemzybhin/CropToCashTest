@@ -18,4 +18,13 @@ class SavedInfo {
     fun getSavedInfo(): String?{
         return sharef!!.getString("SavedInfo", "")
     }
+
+    fun setFirstTime(firsttime: Boolean){
+        var editor = sharef!!.edit()
+        editor.putBoolean("FirstTime", firsttime)
+        editor.commit()
+    }
+    fun getFirstTime(): Boolean{
+        return sharef!!.getBoolean("FirstTime", false)
+    }
 }

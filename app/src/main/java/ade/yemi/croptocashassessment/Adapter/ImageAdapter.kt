@@ -2,6 +2,8 @@ package ade.yemi.croptocashassessment.Adapter
 
 import ade.yemi.croptocashassessment.Model.Exhibit
 import ade.yemi.croptocashassessment.R
+import ade.yemi.croptocashassessment.Utilities.ExpandedView
+import ade.yemi.croptocashassessment.Utilities.clicking
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -48,6 +50,11 @@ class ImageAdapter(var context: Context, var exhibit : Exhibit) :
                     }
                 })
                 .centerCrop().into(holder.image)
+
+        holder.itemView.setOnClickListener {
+            holder.itemView.clicking()
+            ExpandedView(context, exhibit, position)
+        }
     }
 
     override fun getItemCount(): Int {
