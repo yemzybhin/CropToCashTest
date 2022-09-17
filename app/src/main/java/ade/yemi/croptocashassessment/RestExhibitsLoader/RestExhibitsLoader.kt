@@ -25,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import java.util.logging.Handler
 
@@ -32,10 +34,23 @@ class RestExhibitsLoader {
     private lateinit var manager: RecyclerView.LayoutManager
     private lateinit var  myAdapter: RecyclerView.Adapter<*>
 
+    object ServiceBuilder {
+        var builder = Retrofit.Builder()
+                .baseUrl(ExhibitsLoader.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        var API = builder.create(ExhibitsLoader::class.java)
+
+        fun getExhibitList(): Call<List<Exhibit?>>?{
+            var listItems =API.getExhibitList()
+            return listItems
+        }
+    }
+
     fun callAllData(context: Context, linearLayout: LinearLayout, firsttimepropt : TextView, recyclerView: RecyclerView){
         manager = LinearLayoutManager(context)
 
-        val exhibitLoaderInstance = ExhibitsLoader.getExhibitList()
+        val exhibitLoaderInstance = ServiceBuilder.getExhibitList()
         val call = exhibitLoaderInstance
 
         call?.enqueue(object : Callback<List<Exhibit?>?> {
