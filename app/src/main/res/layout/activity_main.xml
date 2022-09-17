@@ -85,13 +85,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@drawable/loadingbackground"
+                android:background="@drawable/my_info_bg"
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cancel_myInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/tertiarycolor1"
+                    app:cardBackgroundColor="@color/tertiarycolor2"
                     app:cardCornerRadius="15dp"
                     android:layout_margin="10dp">
                     <ImageView
@@ -110,7 +110,6 @@
                     android:lineSpacingExtra="7dp"
                     android:fontFamily="@font/productsansbold"
                     android:textSize="14sp"
-                    android:background="@drawable/loadingbackground"
                     android:text="Name : Adeyemi Oduyungbo\nContact : 07088823701\nEmail : Adeyemioduyungbo@gmail.com"></TextView>
             </LinearLayout>
             <LinearLayout

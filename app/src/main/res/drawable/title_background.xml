@@ -5,8 +5,6 @@
         <solid android:color="@color/tertiarycolor3"></solid>
         <stroke android:color="@color/primarycolor"
             android:width="2dp"></stroke>
-        <corners android:bottomLeftRadius="20dp"
-            android:bottomRightRadius="20dp"></corners>
     </shape>
 </item>
 </selector>
